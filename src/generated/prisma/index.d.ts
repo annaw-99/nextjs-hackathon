@@ -2269,6 +2269,7 @@ export namespace Prisma {
     tableSize: number | null
     createdAt: Date | null
     notified: boolean | null
+    seated: boolean | null
   }
 
   export type WaitlistEntryMaxAggregateOutputType = {
@@ -2279,6 +2280,7 @@ export namespace Prisma {
     tableSize: number | null
     createdAt: Date | null
     notified: boolean | null
+    seated: boolean | null
   }
 
   export type WaitlistEntryCountAggregateOutputType = {
@@ -2289,6 +2291,7 @@ export namespace Prisma {
     tableSize: number
     createdAt: number
     notified: number
+    seated: number
     _all: number
   }
 
@@ -2313,6 +2316,7 @@ export namespace Prisma {
     tableSize?: true
     createdAt?: true
     notified?: true
+    seated?: true
   }
 
   export type WaitlistEntryMaxAggregateInputType = {
@@ -2323,6 +2327,7 @@ export namespace Prisma {
     tableSize?: true
     createdAt?: true
     notified?: true
+    seated?: true
   }
 
   export type WaitlistEntryCountAggregateInputType = {
@@ -2333,6 +2338,7 @@ export namespace Prisma {
     tableSize?: true
     createdAt?: true
     notified?: true
+    seated?: true
     _all?: true
   }
 
@@ -2430,6 +2436,7 @@ export namespace Prisma {
     tableSize: number
     createdAt: Date
     notified: boolean
+    seated: boolean
     _count: WaitlistEntryCountAggregateOutputType | null
     _avg: WaitlistEntryAvgAggregateOutputType | null
     _sum: WaitlistEntrySumAggregateOutputType | null
@@ -2459,6 +2466,7 @@ export namespace Prisma {
     tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
+    seated?: boolean
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["waitlistEntry"]>
 
@@ -2470,6 +2478,7 @@ export namespace Prisma {
     tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
+    seated?: boolean
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["waitlistEntry"]>
 
@@ -2481,6 +2490,7 @@ export namespace Prisma {
     tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
+    seated?: boolean
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["waitlistEntry"]>
 
@@ -2492,9 +2502,10 @@ export namespace Prisma {
     tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
+    seated?: boolean
   }
 
-  export type WaitlistEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "name" | "phoneNumber" | "tableSize" | "createdAt" | "notified", ExtArgs["result"]["waitlistEntry"]>
+  export type WaitlistEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "name" | "phoneNumber" | "tableSize" | "createdAt" | "notified" | "seated", ExtArgs["result"]["waitlistEntry"]>
   export type WaitlistEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
   }
@@ -2518,6 +2529,7 @@ export namespace Prisma {
       tableSize: number
       createdAt: Date
       notified: boolean
+      seated: boolean
     }, ExtArgs["result"]["waitlistEntry"]>
     composites: {}
   }
@@ -2949,6 +2961,7 @@ export namespace Prisma {
     readonly tableSize: FieldRef<"WaitlistEntry", 'Int'>
     readonly createdAt: FieldRef<"WaitlistEntry", 'DateTime'>
     readonly notified: FieldRef<"WaitlistEntry", 'Boolean'>
+    readonly seated: FieldRef<"WaitlistEntry", 'Boolean'>
   }
     
 
@@ -4415,7 +4428,8 @@ export namespace Prisma {
     phoneNumber: 'phoneNumber',
     tableSize: 'tableSize',
     createdAt: 'createdAt',
-    notified: 'notified'
+    notified: 'notified',
+    seated: 'seated'
   };
 
   export type WaitlistEntryScalarFieldEnum = (typeof WaitlistEntryScalarFieldEnum)[keyof typeof WaitlistEntryScalarFieldEnum]
@@ -4614,6 +4628,7 @@ export namespace Prisma {
     tableSize?: IntFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeFilter<"WaitlistEntry"> | Date | string
     notified?: BoolFilter<"WaitlistEntry"> | boolean
+    seated?: BoolFilter<"WaitlistEntry"> | boolean
     Restaurant?: XOR<RestaurantScalarRelationFilter, RestaurantWhereInput>
   }
 
@@ -4625,6 +4640,7 @@ export namespace Prisma {
     tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
+    seated?: SortOrder
     Restaurant?: RestaurantOrderByWithRelationInput
   }
 
@@ -4639,6 +4655,7 @@ export namespace Prisma {
     tableSize?: IntFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeFilter<"WaitlistEntry"> | Date | string
     notified?: BoolFilter<"WaitlistEntry"> | boolean
+    seated?: BoolFilter<"WaitlistEntry"> | boolean
     Restaurant?: XOR<RestaurantScalarRelationFilter, RestaurantWhereInput>
   }, "id">
 
@@ -4650,6 +4667,7 @@ export namespace Prisma {
     tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
+    seated?: SortOrder
     _count?: WaitlistEntryCountOrderByAggregateInput
     _avg?: WaitlistEntryAvgOrderByAggregateInput
     _max?: WaitlistEntryMaxOrderByAggregateInput
@@ -4668,6 +4686,7 @@ export namespace Prisma {
     tableSize?: IntWithAggregatesFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeWithAggregatesFilter<"WaitlistEntry"> | Date | string
     notified?: BoolWithAggregatesFilter<"WaitlistEntry"> | boolean
+    seated?: BoolWithAggregatesFilter<"WaitlistEntry"> | boolean
   }
 
   export type UserWhereInput = {
@@ -4810,6 +4829,7 @@ export namespace Prisma {
     tableSize?: number
     createdAt?: Date | string
     notified?: boolean
+    seated?: boolean
     Restaurant: RestaurantCreateNestedOneWithoutWaitlistInput
   }
 
@@ -4821,6 +4841,7 @@ export namespace Prisma {
     tableSize?: number
     createdAt?: Date | string
     notified?: boolean
+    seated?: boolean
   }
 
   export type WaitlistEntryUpdateInput = {
@@ -4829,6 +4850,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
     Restaurant?: RestaurantUpdateOneRequiredWithoutWaitlistNestedInput
   }
 
@@ -4840,6 +4862,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type WaitlistEntryCreateManyInput = {
@@ -4850,6 +4873,7 @@ export namespace Prisma {
     tableSize?: number
     createdAt?: Date | string
     notified?: boolean
+    seated?: boolean
   }
 
   export type WaitlistEntryUpdateManyMutationInput = {
@@ -4858,6 +4882,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type WaitlistEntryUncheckedUpdateManyInput = {
@@ -4868,6 +4893,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserCreateInput = {
@@ -5097,6 +5123,7 @@ export namespace Prisma {
     tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
+    seated?: SortOrder
   }
 
   export type WaitlistEntryAvgOrderByAggregateInput = {
@@ -5113,6 +5140,7 @@ export namespace Prisma {
     tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
+    seated?: SortOrder
   }
 
   export type WaitlistEntryMinOrderByAggregateInput = {
@@ -5123,6 +5151,7 @@ export namespace Prisma {
     tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
+    seated?: SortOrder
   }
 
   export type WaitlistEntrySumOrderByAggregateInput = {
@@ -5417,6 +5446,7 @@ export namespace Prisma {
     tableSize?: number
     createdAt?: Date | string
     notified?: boolean
+    seated?: boolean
   }
 
   export type WaitlistEntryUncheckedCreateWithoutRestaurantInput = {
@@ -5426,6 +5456,7 @@ export namespace Prisma {
     tableSize?: number
     createdAt?: Date | string
     notified?: boolean
+    seated?: boolean
   }
 
   export type WaitlistEntryCreateOrConnectWithoutRestaurantInput = {
@@ -5465,6 +5496,7 @@ export namespace Prisma {
     tableSize?: IntFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeFilter<"WaitlistEntry"> | Date | string
     notified?: BoolFilter<"WaitlistEntry"> | boolean
+    seated?: BoolFilter<"WaitlistEntry"> | boolean
   }
 
   export type RestaurantCreateWithoutWaitlistInput = {
@@ -5536,6 +5568,7 @@ export namespace Prisma {
     tableSize?: number
     createdAt?: Date | string
     notified?: boolean
+    seated?: boolean
   }
 
   export type WaitlistEntryUpdateWithoutRestaurantInput = {
@@ -5544,6 +5577,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type WaitlistEntryUncheckedUpdateWithoutRestaurantInput = {
@@ -5553,6 +5587,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type WaitlistEntryUncheckedUpdateManyWithoutRestaurantInput = {
@@ -5562,6 +5597,7 @@ export namespace Prisma {
     tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
+    seated?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

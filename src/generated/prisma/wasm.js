@@ -136,7 +136,8 @@ exports.Prisma.WaitlistEntryScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   tableSize: 'tableSize',
   createdAt: 'createdAt',
-  notified: 'notified'
+  notified: 'notified',
+  seated: 'seated'
 };
 
 exports.Prisma.UserScalarFieldEnum = {

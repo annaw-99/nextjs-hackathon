@@ -70,7 +70,7 @@ export default function RestaurantDetailPage() {
     }
   }, [id]);
 
-  const computedWaitTime = `${waitlistEntries.length * 10} min`;
+  const computedWaitTime = `${waitlistEntries.length * 12} min`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,18 +101,18 @@ export default function RestaurantDetailPage() {
   };
 
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center p-8">
+    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen items-center justify-items-center p-8 bg-gradient-to-r from-indigo-50 to-white">
       {restaurant ? (
         <>
           <div className="w-full">
-            <Link href="/restaurants" className="inline-flex items-center text-orange-600 hover:underline">
+            <Link href="/restaurants" className="inline-flex items-center text-indigo-600 hover:underline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               <p className="text-sm font-bold">Back to Restaurants</p>
             </Link>
           </div>
           <div className="text-center relative z-10">
             <div className="mb-6 flex justify-center">
-              <div className="rounded-full bg-gradient-to-br from-orange-500 to-orange-600 p-3 shadow-md">
+              <div className="rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 shadow-md">
                 <Utensils className="h-6 w-6 text-white" />
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function RestaurantDetailPage() {
             <p className="mb-8 text-sm text-gray-800">
               Join the waitlist for {restaurant.name} and we'll notify you when your table is ready.
             </p>
-            <div className="bg-gradient-to-br from-white to-orange-50 p-6 rounded-lg shadow-sm border border-orange-100">
+            <div className="bg-gradient-to-br from-white to-indigo-50 p-6 rounded-lg shadow-sm border border-indigo-100">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-bold">Name</Label>
@@ -158,13 +158,13 @@ export default function RestaurantDetailPage() {
                     />
                   </div>
                 </div>
-                <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700 font-bold">
+                <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 font-bold">
                   Join
                 </Button>
               </form>
             </div>
             <p className="mt-8 text-sm text-gray-500">
-              Already <span className="font-medium text-orange-600">{waitlistEntries.length}</span> parties on the waitlist for this restaurant
+              There are currently <span className="text-indigo-600">{waitlistEntries.length}</span> parties on the waitlist for this restaurant.
             </p>
           </div>
           {error && <p className="mt-4 text-red-600 text-center">{error}</p>}

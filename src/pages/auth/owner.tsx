@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import Link from 'next/link';
 
 export default function OwnerPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
@@ -67,9 +68,11 @@ export default function OwnerPage() {
 
   return (
     <div className="min-h-screen flex">
-      <div className="w-[50%] bg-orange-300 flex flex-col items-center justify-center p-8">
+      <div className="w-[50%] bg-indigo-300 flex flex-col items-center justify-center p-8">
         <div className="w-full max-w-md">
-          <h1 className="text-4xl font-bold">EasiEats</h1>
+          <Link href="/" className="text-4xl font-bold mb-1">
+            HUEY
+          </Link>
           <p className="text-xs text-gray-500 mb-3">Login or register to get started.</p>
           <div className="space-y-3">
             <Button
@@ -77,10 +80,10 @@ export default function OwnerPage() {
                 setActiveTab('login');
                 setRegisterStep(1);
               }}
-              className={`w-full ${
+              className={`w-full cursor-pointer transition-all duration-300 ${
                 activeTab === 'login'
-                  ? 'bg-orange-500 text-white hover:bg-orange-600'
-                  : 'bg-white text-orange-500 hover:bg-neutral-100'
+                  ? 'bg-indigo-500 text-white hover:bg-indigo-600'
+                  : 'bg-white text-indigo-500 hover:bg-neutral-100'
               }`}
             >
               Login
@@ -90,10 +93,10 @@ export default function OwnerPage() {
                 setActiveTab('register');
                 setRegisterStep(1);
               }}
-              className={`w-full ${
+              className={`w-full cursor-pointer transition-all duration-300 ${
                 activeTab === 'register'
-                  ? 'bg-orange-500 text-white hover:bg-orange-600'
-                  : 'bg-white text-orange-500 hover:bg-neutral-100'
+                  ? 'bg-indigo-500 text-white hover:bg-indigo-600'
+                  : 'bg-white text-indigo-500 hover:bg-neutral-100'
               }`}
             >
               Register
@@ -127,7 +130,7 @@ export default function OwnerPage() {
                   onChange={(e) => setLoginPassword(e.target.value)}
                   required 
                 />
-                <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600">
+                <Button type="submit" className="w-full cursor-pointer bg-indigo-500 hover:bg-indigo-600 transition-all duration-300">
                   Login
                 </Button>
               </div>
@@ -140,8 +143,8 @@ export default function OwnerPage() {
                   <p className="text-xs text-gray-400">Enter your restaurant details to register.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className={`w-2 h-2 rounded-full ${registerStep === 1 ? 'bg-orange-500' : 'bg-gray-300'}`} />
-                  <div className={`w-2 h-2 rounded-full ${registerStep === 2 ? 'bg-orange-500' : 'bg-gray-300'}`} />
+                  <div className={`w-2 h-2 rounded-full ${registerStep === 1 ? 'bg-indigo-500' : 'bg-gray-300'}`} />
+                  <div className={`w-2 h-2 rounded-full ${registerStep === 2 ? 'bg-indigo-500' : 'bg-gray-300'}`} />
                 </div>
               </div>
 
@@ -173,7 +176,7 @@ export default function OwnerPage() {
                   <Button 
                     onClick={() => setRegisterStep(2)}
                     type="button"
-                    className="w-full bg-orange-500 hover:bg-orange-600"
+                    className="w-full cursor-pointer bg-indigo-500 hover:bg-indigo-600 transition-all duration-300"
                   >
                     Next
                   </Button>
@@ -236,11 +239,11 @@ export default function OwnerPage() {
                     <Button 
                       onClick={() => setRegisterStep(1)}
                       type="button"
-                      className="flex-1 bg-gray-200 text-gray-800 hover:bg-gray-300"
+                      className="flex-1 cursor-pointer bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all duration-300"
                     >
                       Back
                     </Button>
-                    <Button type="submit" className="flex-1 bg-orange-500 hover:bg-orange-600">
+                    <Button type="submit" className="flex-1 cursor-pointer bg-indigo-500 hover:bg-indigo-600 transition-all duration-300">
                       Register
                     </Button>
                   </div>

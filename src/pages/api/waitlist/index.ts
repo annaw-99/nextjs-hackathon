@@ -3,24 +3,22 @@ import { prisma } from '@/lib/prisma';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
+    const { restaurantId, name, phoneNumber, tableSize } = req.body;
     try {
-      const { restaurantId, name, phoneNumber, tableSize } = req.body;
-
-      const entry = await prisma.waitlistEntry.create({
+      const created = await prisma.waitlistEntry.create({
         data: {
-          restaurantId: Number(restaurantId),
+          restaurantId,
           name,
           phoneNumber,
-          tableSize
+          tableSize,
         },
       });
-
-      res.status(201).json(entry);
-    } catch (error: any) {
-      console.error('Error creating waitlist entry:', error);
-      res.status(500).json({ error: 'Unable to add waitlist entry', message: error.message });
+      return res.status(201).json(created);
+    } catch (err: any) {
+      console.error(err);
+      return res.status(500).json({ error: 'Failed to create entry', message: err.message });
     }
-  } else {
-    res.status(405).json({ error: 'Method not allowed' });
   }
+
+  res.status(405).end(`Method ${req.method} Not Allowed`);
 }

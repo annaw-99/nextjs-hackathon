@@ -1,5 +1,6 @@
+"use client";
 import { useEffect, useState } from 'react';
-import { Search, X, Clock } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
@@ -23,8 +24,10 @@ type Restaurant = {
   city: string;
   state: string;
   cuisine: string;
-  waitTime: string;
   image?: string;
+  _count: {
+    waitlist: number;
+  };
 };
 
 const cuisineTypes = [
@@ -33,14 +36,31 @@ const cuisineTypes = [
   "Asian",
   "Italian",
   "Mediterranean",
-  "Other"
+  "Other",
+];
+
+const cityTypes = [
+  "All",
+  "San Francisco",
+  "Los Angeles",
+  "Seattle",
+  "New York",
+];
+
+const stateTypes = [
+  "All",
+  "California",
+  "Washington",
+  "New York",
 ];
 
 export default function RestaurantsPage() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCuisine, setSelectedCuisine] = useState('All');
+  const [selectedCuisine, setSelectedCuisine] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedState, setSelectedState] = useState('');
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -49,36 +69,42 @@ export default function RestaurantsPage() {
         if (!res.ok) {
           throw new Error(`Error: ${res.statusText}`);
         }
-        const data = await res.json();
+        const data: Restaurant[] = await res.json();
         setRestaurants(data);
       } catch (err: any) {
         setError(err.message);
       }
     };
-
     fetchRestaurants();
   }, []);
 
-  const filteredRestaurants = restaurants.filter(restaurant => {
-    const matchesSearch = restaurant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    restaurant.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCuisine = selectedCuisine === "All" || restaurant.cuisine === selectedCuisine;
-    return matchesSearch && matchesCuisine;
+  const filteredRestaurants = restaurants.filter((restaurant) => {
+    const matchesSearch =
+      restaurant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      restaurant.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCuisine = selectedCuisine === "" ||selectedCuisine === "All" ||restaurant.cuisine === selectedCuisine;
+    const matchesCity = selectedCity === "" || selectedCity === "All" || restaurant.city === selectedCity;
+    const matchesState = selectedState === "" || selectedState === "All" || restaurant.state === selectedState;
+    return matchesSearch && matchesCuisine && matchesCity && matchesState;
   });
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-gradient-to-r from-indigo-50 to-white">
       <div className="space-y-6">
-        <h1 className="text-3xl font-bold mb-1 text-orange-500 text-center">EasiEats</h1>
-        <p className="text-xs text-center text-gray-800">Find your next favorite restaurant. Join the waitlist to secure a table.</p>
-        <div className="flex flex-col gap-4 md:flex-row m-12">
+        <Link href="/" className="text-4xl font-bold mb-1 text-indigo-500 flex justify-center">
+          HUEY
+        </Link>
+        <p className="text-sm text-center font-bold text-gray-800">
+          HAVE U EATEN YET?
+        </p>
+        <div className="flex flex-col gap-4 md:flex-row mx-12">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
               placeholder="Search restaurants or cuisine..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 border-orange-200 focus-visible:border-orange-400 focus-visible:ring-transparent shadow-sm"
+              className="pl-9 border-indigo-200 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm"
             />
             {searchTerm && (
               <button
@@ -90,13 +116,37 @@ export default function RestaurantsPage() {
             )}
           </div>
           <Select value={selectedCuisine} onValueChange={setSelectedCuisine}>
-            <SelectTrigger className="w-full md:w-[180px] border-orange-200 focus:ring-orange-500">
-              <SelectValue placeholder="Cuisine" />
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px] border-indigo-200 focus:ring-indigo-500">
+              <SelectValue placeholder="Select Cuisine Type" />
             </SelectTrigger>
             <SelectContent>
               {cuisineTypes.map((cuisine) => (
-                <SelectItem key={cuisine} value={cuisine}>
+                <SelectItem key={cuisine} value={cuisine} className="cursor-pointer">
                   {cuisine}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={selectedCity} onValueChange={setSelectedCity}>
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px] border-indigo-200 focus:ring-indigo-500">
+              <SelectValue placeholder="Select City" />
+            </SelectTrigger>
+            <SelectContent>
+              {cityTypes.map((city) => (
+                <SelectItem key={city} value={city} className="cursor-pointer">
+                  {city}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={selectedState} onValueChange={setSelectedState}>
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px] border-indigo-200 focus:ring-indigo-500">
+              <SelectValue placeholder="Select State" />
+            </SelectTrigger>
+            <SelectContent>
+              {stateTypes.map((state) => (
+                <SelectItem key={state} value={state} className="cursor-pointer">
+                  {state}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -110,46 +160,67 @@ export default function RestaurantsPage() {
             <p>No restaurants found matching your criteria.</p>
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 m-12">
-            {filteredRestaurants.map((restaurant) => (
-              <Card key={restaurant.id} className="gap-y-2 border-orange-200 transition-all hover:shadow-md p-4">
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image
-                    src={restaurant.image || "/images/default-image.jpg"}
-                    alt={restaurant.name}
-                    width={400}
-                    height={300}
-                    className="object-cover w-full h-full rounded-md"
-                    priority={false}
-                  />
-                </div>
-                <CardContent className="px-2 mt-0">
-                  <h3 className="text-xl font-bold">{restaurant.name}</h3>
-                  <div className="my-2 flex items-center justify-between">
-                    <Badge variant="outline" className="bg-orange-50 text-orange-600 border-orange-200 font-bold">
-                      {restaurant.cuisine}
-                    </Badge>
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
-                      <Clock className="h-4 w-4" />
-                      <span>{restaurant.waitTime}</span>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-12">
+            {filteredRestaurants.map((restaurant) => {
+              const waitTime = restaurant._count.waitlist * 12;
+              return (
+                <Card key={restaurant.id} className="py-0 gap-y-1 group relative overflow-hidden border-indigo-100 transition-all duration-300 hover:shadow-xl">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                    <Image
+                      src={restaurant.image || "/images/default-image.jpg"}
+                      alt={restaurant.name}
+                      width={400}
+                      height={300}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      priority={false}
+                    />
+                    <div className="absolute bottom-4 left-4 z-20">
+                      <h3 className="text-xl font-bold text-white drop-shadow-lg">{restaurant.name}</h3>
+                      <Badge variant="outline" className="mt-2 bg-white/10 text-white border-white/20 backdrop-blur-sm">
+                        {restaurant.cuisine}
+                      </Badge>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-600">{restaurant.address}</div>
-                  <div className="text-sm text-gray-600">{restaurant.city}, {restaurant.state}</div>
-                  <p className="text-xs font-bold text-gray-600 mt-3">{restaurant.description}</p>
-                </CardContent>
-                <CardFooter className="px-2">
-                  <Link href={`/restaurants/${restaurant.id}`} className="w-full">
-                    <Button className="w-full bg-orange-600 hover:bg-orange-700 font-bold">
-                      Join Waitlist
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
+                  <CardContent className="px-4 pb-2 space-y-2">
+                    <p className="text-xs font-bold text-gray-600 mt-3">{restaurant.description}</p>
+                    <div className="flex flex-col text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 font-medium">Estimated Wait Time</span>
+                        <span className="text-gray-800 font-semibold">{waitTime} min</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600 font-medium">Parties Waiting</span>
+                        <span className="text-gray-800 font-semibold">{restaurant._count.waitlist}</span>
+                      </div>
+                    </div>
+                    <div className="pt-1 border-t border-gray-100">
+                      <div className="text-sm">
+                        <div className="text-gray-600 text-xs mt-1">
+                          {restaurant.address}
+                        </div>
+                        <div className="text-gray-600 text-xs">
+                          {restaurant.city}, {restaurant.state}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-4 pt-0">
+                    <Link href={`/restaurants/${restaurant.id}`} className="w-full">
+                      <Button className="cursor-pointer w-full bg-indigo-600 hover:bg-indigo-700 font-semibold transition-colors duration-200">
+                        Join Waitlist
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              );
+            })}
           </div>
         )}
       </div>
+      <footer className="row-start-4 mt-8 flex items-center justify-center">
+        <p className="text-[10px]">© 2025 EasiEats. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

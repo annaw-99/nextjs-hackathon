@@ -35,6 +35,7 @@ model WaitlistEntry {
   tableSize    Int       @default(2)
   createdAt    DateTime  @default(now())
   notified     Boolean   @default(false)
+  seated       Boolean   @default(false)
   Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 }
 
