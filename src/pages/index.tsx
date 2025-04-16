@@ -7,8 +7,8 @@ export default function Home() {
       className={`font-[family-name:var(--font-geist-sans)] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-2 pb-20 gap-16 sm:p-4`}
     >
       <main className="flex flex-col row-start-2 items-center justify-center sm:items-center">
-        <h1 className="text-5xl font-bold text-orange-500 text-center">EasiEats</h1>
-        <p className="text-sm text-center">The easiest way to wait in line.</p>
+        <h1 className="text-5xl font-bold text-orange-500 text-center mb-1">EasiEats</h1>
+        <p className="text-sm text-center mb-4">The easiest way to wait in line.</p>
         <div className="flex gap-4 items-center flex-col sm:flex-row mt-4">
           <Link href="/auth/owner">
             <Button className="bg-orange-400 hover:bg-orange-500 font-bold cursor-pointer">

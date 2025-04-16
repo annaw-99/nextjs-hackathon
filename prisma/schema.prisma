@@ -22,6 +22,8 @@ model Restaurant {
   address     String
   city        String           
   state       String
+  cuisine     String?          @default("All")
+  image       String?          @default("images/default-image.jpg")
   waitlist    WaitlistEntry[]
 }
 
@@ -30,14 +32,15 @@ model WaitlistEntry {
   restaurantId Int
   name         String
   phoneNumber  String
+  tableSize    Int       @default(2)
   createdAt    DateTime  @default(now())
   notified     Boolean   @default(false)
   Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
-  role     String // e.g., "owner"
+  id            Int    @id @default(autoincrement())
+  email         String @unique
+  password      String
+  role          String // e.g., "owner"
 }

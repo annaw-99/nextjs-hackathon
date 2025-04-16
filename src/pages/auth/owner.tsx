@@ -1,11 +1,69 @@
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/textarea";
 
 export default function OwnerPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
   const [registerStep, setRegisterStep] = useState<1 | 2>(1);
+
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+
+  const [restaurantName, setRestaurantName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [description, setDescription] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [stateValue, setStateValue] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [regMessage, setRegMessage] = useState('');
+  const [regError, setRegError] = useState('');
+
+  // login submission handler
+  const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signIn('credentials', { email: loginEmail, password: loginPassword, callbackUrl: '/admin' });
+  };
+
+  // registration submission handler
+  const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setRegMessage('');
+    setRegError('');
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          restaurantName,
+          phoneNumber,
+          description,
+          address,
+          city,
+          state: stateValue,
+          email,
+          password,
+          confirmPassword,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setRegError(data.error || 'Registration failed');
+      } else {
+        signIn("credentials", { 
+          email, 
+          password, 
+          callbackUrl: "/admin" 
+        });
+      }
+    } catch (error: any) {
+      setRegError(error.message);
+    }
+  };
 
   return (
     <div className="min-h-screen flex">
@@ -47,21 +105,35 @@ export default function OwnerPage() {
       <div className="w-[50%] flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           {activeTab === 'login' ? (
-            <div className="space-y-6">
+            <form onSubmit={handleLoginSubmit} className="space-y-6">
               <div className="space-y-1">
                 <h2 className="text-2xl font-bold text-gray-800">Login to Your Account</h2>
                 <p className="text-xs text-gray-400">Enter your email and password to login.</p>
               </div>
               <div className="space-y-3">
-                <Input type="email" placeholder="Email" className="w-full" />
-                <Input type="password" placeholder="Password" className="w-full" />
-                <Button className="w-full bg-orange-500 hover:bg-orange-600">
+                <Input 
+                  type="email" 
+                  placeholder="Email" 
+                  className="w-full" 
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  required 
+                />
+                <Input 
+                  type="password" 
+                  placeholder="Password" 
+                  className="w-full" 
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  required 
+                />
+                <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600">
                   Login
                 </Button>
               </div>
-            </div>
+            </form>
           ) : (
-            <div className="space-y-6">
+            <form onSubmit={handleRegisterSubmit} className="space-y-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800">Register Your Restaurant</h2>
@@ -75,36 +147,106 @@ export default function OwnerPage() {
 
               {registerStep === 1 ? (
                 <div className="space-y-4">
-                  <Input type="text" placeholder="Restaurant Name" className="w-full" />
-                  <Input type="text" placeholder="Phone Number" className="w-full" />
-                  <Textarea placeholder="Restaurant Description" className="w-full" />
-                  <Button onClick={() => setRegisterStep(2)}
-                    className="w-full bg-orange-500 hover:bg-orange-600">
+                  <Input 
+                    type="text" 
+                    placeholder="Restaurant Name" 
+                    className="w-full" 
+                    value={restaurantName}
+                    onChange={(e) => setRestaurantName(e.target.value)}
+                    required 
+                  />
+                  <Input 
+                    type="text" 
+                    placeholder="Phone Number" 
+                    className="w-full" 
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    required 
+                  />
+                  <Textarea 
+                    placeholder="Jot down hash tags for your restaurant (e.g. #Italian #Pizza #Pasta)" 
+                    className="w-full" 
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required 
+                  />
+                  <Button 
+                    onClick={() => setRegisterStep(2)}
+                    type="button"
+                    className="w-full bg-orange-500 hover:bg-orange-600"
+                  >
                     Next
                   </Button>
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <Input type="text" placeholder="Street Address" className="w-full" />
+                  <Input 
+                    type="text" 
+                    placeholder="Street Address" 
+                    className="w-full" 
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    required 
+                  />
                   <div className="flex gap-2">
-                    <Input type="text" placeholder="City" className="w-full" />
-                    <Input type="text" placeholder="State" className="w-full" />
+                    <Input 
+                      type="text" 
+                      placeholder="City" 
+                      className="w-full" 
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      required 
+                    />
+                    <Input 
+                      type="text" 
+                      placeholder="State" 
+                      className="w-full" 
+                      value={stateValue}
+                      onChange={(e) => setStateValue(e.target.value)}
+                      required 
+                    />
                   </div>
-                  <Input type="email" placeholder="Email" className="w-full" />
-                  <Input type="password" placeholder="Password" className="w-full" />
-                  <Input type="password" placeholder="Confirm Password" className="w-full" />
+                  <Input 
+                    type="email" 
+                    placeholder="Email" 
+                    className="w-full" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required 
+                  />
+                  <Input 
+                    type="password" 
+                    placeholder="Password" 
+                    className="w-full" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required 
+                  />
+                  <Input 
+                    type="password" 
+                    placeholder="Confirm Password" 
+                    className="w-full" 
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required 
+                  />
+                  {regError && <p className="text-red-500 text-sm">{regError}</p>}
+                  {regMessage && <p className="text-green-500 text-sm">{regMessage}</p>}
                   <div className="flex gap-2">
-                    <Button onClick={() => setRegisterStep(1)}
-                      className="flex-1 bg-gray-200 text-gray-800 hover:bg-gray-300">
+                    <Button 
+                      onClick={() => setRegisterStep(1)}
+                      type="button"
+                      className="flex-1 bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    >
                       Back
                     </Button>
-                    <Button className="flex-1 bg-orange-500 hover:bg-orange-600">
+                    <Button type="submit" className="flex-1 bg-orange-500 hover:bg-orange-600">
                       Register
                     </Button>
                   </div>
                 </div>
               )}
-            </div>
+            </form>
           )}
         </div>
       </div>

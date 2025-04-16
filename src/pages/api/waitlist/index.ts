@@ -4,13 +4,14 @@ import { prisma } from '@/lib/prisma';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
-      const { restaurantId, name, phoneNumber } = req.body;
+      const { restaurantId, name, phoneNumber, tableSize } = req.body;
 
       const entry = await prisma.waitlistEntry.create({
         data: {
           restaurantId: Number(restaurantId),
           name,
           phoneNumber,
+          tableSize
         },
       });
 

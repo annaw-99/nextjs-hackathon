@@ -124,7 +124,9 @@ exports.Prisma.RestaurantScalarFieldEnum = {
   description: 'description',
   address: 'address',
   city: 'city',
-  state: 'state'
+  state: 'state',
+  cuisine: 'cuisine',
+  image: 'image'
 };
 
 exports.Prisma.WaitlistEntryScalarFieldEnum = {
@@ -132,6 +134,7 @@ exports.Prisma.WaitlistEntryScalarFieldEnum = {
   restaurantId: 'restaurantId',
   name: 'name',
   phoneNumber: 'phoneNumber',
+  tableSize: 'tableSize',
   createdAt: 'createdAt',
   notified: 'notified'
 };
@@ -151,6 +154,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

@@ -1109,6 +1109,8 @@ export namespace Prisma {
     address: string | null
     city: string | null
     state: string | null
+    cuisine: string | null
+    image: string | null
   }
 
   export type RestaurantMaxAggregateOutputType = {
@@ -1119,6 +1121,8 @@ export namespace Prisma {
     address: string | null
     city: string | null
     state: string | null
+    cuisine: string | null
+    image: string | null
   }
 
   export type RestaurantCountAggregateOutputType = {
@@ -1129,6 +1133,8 @@ export namespace Prisma {
     address: number
     city: number
     state: number
+    cuisine: number
+    image: number
     _all: number
   }
 
@@ -1149,6 +1155,8 @@ export namespace Prisma {
     address?: true
     city?: true
     state?: true
+    cuisine?: true
+    image?: true
   }
 
   export type RestaurantMaxAggregateInputType = {
@@ -1159,6 +1167,8 @@ export namespace Prisma {
     address?: true
     city?: true
     state?: true
+    cuisine?: true
+    image?: true
   }
 
   export type RestaurantCountAggregateInputType = {
@@ -1169,6 +1179,8 @@ export namespace Prisma {
     address?: true
     city?: true
     state?: true
+    cuisine?: true
+    image?: true
     _all?: true
   }
 
@@ -1266,6 +1278,8 @@ export namespace Prisma {
     address: string
     city: string
     state: string
+    cuisine: string | null
+    image: string | null
     _count: RestaurantCountAggregateOutputType | null
     _avg: RestaurantAvgAggregateOutputType | null
     _sum: RestaurantSumAggregateOutputType | null
@@ -1295,6 +1309,8 @@ export namespace Prisma {
     address?: boolean
     city?: boolean
     state?: boolean
+    cuisine?: boolean
+    image?: boolean
     waitlist?: boolean | Restaurant$waitlistArgs<ExtArgs>
     _count?: boolean | RestaurantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["restaurant"]>
@@ -1307,6 +1323,8 @@ export namespace Prisma {
     address?: boolean
     city?: boolean
     state?: boolean
+    cuisine?: boolean
+    image?: boolean
   }, ExtArgs["result"]["restaurant"]>
 
   export type RestaurantSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1317,6 +1335,8 @@ export namespace Prisma {
     address?: boolean
     city?: boolean
     state?: boolean
+    cuisine?: boolean
+    image?: boolean
   }, ExtArgs["result"]["restaurant"]>
 
   export type RestaurantSelectScalar = {
@@ -1327,9 +1347,11 @@ export namespace Prisma {
     address?: boolean
     city?: boolean
     state?: boolean
+    cuisine?: boolean
+    image?: boolean
   }
 
-  export type RestaurantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "description" | "address" | "city" | "state", ExtArgs["result"]["restaurant"]>
+  export type RestaurantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "description" | "address" | "city" | "state" | "cuisine" | "image", ExtArgs["result"]["restaurant"]>
   export type RestaurantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     waitlist?: boolean | Restaurant$waitlistArgs<ExtArgs>
     _count?: boolean | RestaurantCountOutputTypeDefaultArgs<ExtArgs>
@@ -1350,6 +1372,8 @@ export namespace Prisma {
       address: string
       city: string
       state: string
+      cuisine: string | null
+      image: string | null
     }, ExtArgs["result"]["restaurant"]>
     composites: {}
   }
@@ -1781,6 +1805,8 @@ export namespace Prisma {
     readonly address: FieldRef<"Restaurant", 'String'>
     readonly city: FieldRef<"Restaurant", 'String'>
     readonly state: FieldRef<"Restaurant", 'String'>
+    readonly cuisine: FieldRef<"Restaurant", 'String'>
+    readonly image: FieldRef<"Restaurant", 'String'>
   }
     
 
@@ -2226,11 +2252,13 @@ export namespace Prisma {
   export type WaitlistEntryAvgAggregateOutputType = {
     id: number | null
     restaurantId: number | null
+    tableSize: number | null
   }
 
   export type WaitlistEntrySumAggregateOutputType = {
     id: number | null
     restaurantId: number | null
+    tableSize: number | null
   }
 
   export type WaitlistEntryMinAggregateOutputType = {
@@ -2238,6 +2266,7 @@ export namespace Prisma {
     restaurantId: number | null
     name: string | null
     phoneNumber: string | null
+    tableSize: number | null
     createdAt: Date | null
     notified: boolean | null
   }
@@ -2247,6 +2276,7 @@ export namespace Prisma {
     restaurantId: number | null
     name: string | null
     phoneNumber: string | null
+    tableSize: number | null
     createdAt: Date | null
     notified: boolean | null
   }
@@ -2256,6 +2286,7 @@ export namespace Prisma {
     restaurantId: number
     name: number
     phoneNumber: number
+    tableSize: number
     createdAt: number
     notified: number
     _all: number
@@ -2265,11 +2296,13 @@ export namespace Prisma {
   export type WaitlistEntryAvgAggregateInputType = {
     id?: true
     restaurantId?: true
+    tableSize?: true
   }
 
   export type WaitlistEntrySumAggregateInputType = {
     id?: true
     restaurantId?: true
+    tableSize?: true
   }
 
   export type WaitlistEntryMinAggregateInputType = {
@@ -2277,6 +2310,7 @@ export namespace Prisma {
     restaurantId?: true
     name?: true
     phoneNumber?: true
+    tableSize?: true
     createdAt?: true
     notified?: true
   }
@@ -2286,6 +2320,7 @@ export namespace Prisma {
     restaurantId?: true
     name?: true
     phoneNumber?: true
+    tableSize?: true
     createdAt?: true
     notified?: true
   }
@@ -2295,6 +2330,7 @@ export namespace Prisma {
     restaurantId?: true
     name?: true
     phoneNumber?: true
+    tableSize?: true
     createdAt?: true
     notified?: true
     _all?: true
@@ -2391,6 +2427,7 @@ export namespace Prisma {
     restaurantId: number
     name: string
     phoneNumber: string
+    tableSize: number
     createdAt: Date
     notified: boolean
     _count: WaitlistEntryCountAggregateOutputType | null
@@ -2419,6 +2456,7 @@ export namespace Prisma {
     restaurantId?: boolean
     name?: boolean
     phoneNumber?: boolean
+    tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
@@ -2429,6 +2467,7 @@ export namespace Prisma {
     restaurantId?: boolean
     name?: boolean
     phoneNumber?: boolean
+    tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
@@ -2439,6 +2478,7 @@ export namespace Prisma {
     restaurantId?: boolean
     name?: boolean
     phoneNumber?: boolean
+    tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
@@ -2449,11 +2489,12 @@ export namespace Prisma {
     restaurantId?: boolean
     name?: boolean
     phoneNumber?: boolean
+    tableSize?: boolean
     createdAt?: boolean
     notified?: boolean
   }
 
-  export type WaitlistEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "name" | "phoneNumber" | "createdAt" | "notified", ExtArgs["result"]["waitlistEntry"]>
+  export type WaitlistEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "name" | "phoneNumber" | "tableSize" | "createdAt" | "notified", ExtArgs["result"]["waitlistEntry"]>
   export type WaitlistEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
   }
@@ -2474,6 +2515,7 @@ export namespace Prisma {
       restaurantId: number
       name: string
       phoneNumber: string
+      tableSize: number
       createdAt: Date
       notified: boolean
     }, ExtArgs["result"]["waitlistEntry"]>
@@ -2904,6 +2946,7 @@ export namespace Prisma {
     readonly restaurantId: FieldRef<"WaitlistEntry", 'Int'>
     readonly name: FieldRef<"WaitlistEntry", 'String'>
     readonly phoneNumber: FieldRef<"WaitlistEntry", 'String'>
+    readonly tableSize: FieldRef<"WaitlistEntry", 'Int'>
     readonly createdAt: FieldRef<"WaitlistEntry", 'DateTime'>
     readonly notified: FieldRef<"WaitlistEntry", 'Boolean'>
   }
@@ -4357,7 +4400,9 @@ export namespace Prisma {
     description: 'description',
     address: 'address',
     city: 'city',
-    state: 'state'
+    state: 'state',
+    cuisine: 'cuisine',
+    image: 'image'
   };
 
   export type RestaurantScalarFieldEnum = (typeof RestaurantScalarFieldEnum)[keyof typeof RestaurantScalarFieldEnum]
@@ -4368,6 +4413,7 @@ export namespace Prisma {
     restaurantId: 'restaurantId',
     name: 'name',
     phoneNumber: 'phoneNumber',
+    tableSize: 'tableSize',
     createdAt: 'createdAt',
     notified: 'notified'
   };
@@ -4399,6 +4445,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -4483,6 +4537,8 @@ export namespace Prisma {
     address?: StringFilter<"Restaurant"> | string
     city?: StringFilter<"Restaurant"> | string
     state?: StringFilter<"Restaurant"> | string
+    cuisine?: StringNullableFilter<"Restaurant"> | string | null
+    image?: StringNullableFilter<"Restaurant"> | string | null
     waitlist?: WaitlistEntryListRelationFilter
   }
 
@@ -4494,6 +4550,8 @@ export namespace Prisma {
     address?: SortOrder
     city?: SortOrder
     state?: SortOrder
+    cuisine?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
     waitlist?: WaitlistEntryOrderByRelationAggregateInput
   }
 
@@ -4508,6 +4566,8 @@ export namespace Prisma {
     address?: StringFilter<"Restaurant"> | string
     city?: StringFilter<"Restaurant"> | string
     state?: StringFilter<"Restaurant"> | string
+    cuisine?: StringNullableFilter<"Restaurant"> | string | null
+    image?: StringNullableFilter<"Restaurant"> | string | null
     waitlist?: WaitlistEntryListRelationFilter
   }, "id">
 
@@ -4519,6 +4579,8 @@ export namespace Prisma {
     address?: SortOrder
     city?: SortOrder
     state?: SortOrder
+    cuisine?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
     _count?: RestaurantCountOrderByAggregateInput
     _avg?: RestaurantAvgOrderByAggregateInput
     _max?: RestaurantMaxOrderByAggregateInput
@@ -4537,6 +4599,8 @@ export namespace Prisma {
     address?: StringWithAggregatesFilter<"Restaurant"> | string
     city?: StringWithAggregatesFilter<"Restaurant"> | string
     state?: StringWithAggregatesFilter<"Restaurant"> | string
+    cuisine?: StringNullableWithAggregatesFilter<"Restaurant"> | string | null
+    image?: StringNullableWithAggregatesFilter<"Restaurant"> | string | null
   }
 
   export type WaitlistEntryWhereInput = {
@@ -4547,6 +4611,7 @@ export namespace Prisma {
     restaurantId?: IntFilter<"WaitlistEntry"> | number
     name?: StringFilter<"WaitlistEntry"> | string
     phoneNumber?: StringFilter<"WaitlistEntry"> | string
+    tableSize?: IntFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeFilter<"WaitlistEntry"> | Date | string
     notified?: BoolFilter<"WaitlistEntry"> | boolean
     Restaurant?: XOR<RestaurantScalarRelationFilter, RestaurantWhereInput>
@@ -4557,6 +4622,7 @@ export namespace Prisma {
     restaurantId?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
+    tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
     Restaurant?: RestaurantOrderByWithRelationInput
@@ -4570,6 +4636,7 @@ export namespace Prisma {
     restaurantId?: IntFilter<"WaitlistEntry"> | number
     name?: StringFilter<"WaitlistEntry"> | string
     phoneNumber?: StringFilter<"WaitlistEntry"> | string
+    tableSize?: IntFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeFilter<"WaitlistEntry"> | Date | string
     notified?: BoolFilter<"WaitlistEntry"> | boolean
     Restaurant?: XOR<RestaurantScalarRelationFilter, RestaurantWhereInput>
@@ -4580,6 +4647,7 @@ export namespace Prisma {
     restaurantId?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
+    tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
     _count?: WaitlistEntryCountOrderByAggregateInput
@@ -4597,6 +4665,7 @@ export namespace Prisma {
     restaurantId?: IntWithAggregatesFilter<"WaitlistEntry"> | number
     name?: StringWithAggregatesFilter<"WaitlistEntry"> | string
     phoneNumber?: StringWithAggregatesFilter<"WaitlistEntry"> | string
+    tableSize?: IntWithAggregatesFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeWithAggregatesFilter<"WaitlistEntry"> | Date | string
     notified?: BoolWithAggregatesFilter<"WaitlistEntry"> | boolean
   }
@@ -4657,6 +4726,8 @@ export namespace Prisma {
     address: string
     city: string
     state: string
+    cuisine?: string | null
+    image?: string | null
     waitlist?: WaitlistEntryCreateNestedManyWithoutRestaurantInput
   }
 
@@ -4668,6 +4739,8 @@ export namespace Prisma {
     address: string
     city: string
     state: string
+    cuisine?: string | null
+    image?: string | null
     waitlist?: WaitlistEntryUncheckedCreateNestedManyWithoutRestaurantInput
   }
 
@@ -4678,6 +4751,8 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
+    cuisine?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     waitlist?: WaitlistEntryUpdateManyWithoutRestaurantNestedInput
   }
 
@@ -4689,6 +4764,8 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
+    cuisine?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     waitlist?: WaitlistEntryUncheckedUpdateManyWithoutRestaurantNestedInput
   }
 
@@ -4700,6 +4777,8 @@ export namespace Prisma {
     address: string
     city: string
     state: string
+    cuisine?: string | null
+    image?: string | null
   }
 
   export type RestaurantUpdateManyMutationInput = {
@@ -4709,6 +4788,8 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
+    cuisine?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RestaurantUncheckedUpdateManyInput = {
@@ -4719,11 +4800,14 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
+    cuisine?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WaitlistEntryCreateInput = {
     name: string
     phoneNumber: string
+    tableSize?: number
     createdAt?: Date | string
     notified?: boolean
     Restaurant: RestaurantCreateNestedOneWithoutWaitlistInput
@@ -4734,6 +4818,7 @@ export namespace Prisma {
     restaurantId: number
     name: string
     phoneNumber: string
+    tableSize?: number
     createdAt?: Date | string
     notified?: boolean
   }
@@ -4741,6 +4826,7 @@ export namespace Prisma {
   export type WaitlistEntryUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
     Restaurant?: RestaurantUpdateOneRequiredWithoutWaitlistNestedInput
@@ -4751,6 +4837,7 @@ export namespace Prisma {
     restaurantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -4760,6 +4847,7 @@ export namespace Prisma {
     restaurantId: number
     name: string
     phoneNumber: string
+    tableSize?: number
     createdAt?: Date | string
     notified?: boolean
   }
@@ -4767,6 +4855,7 @@ export namespace Prisma {
   export type WaitlistEntryUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -4776,6 +4865,7 @@ export namespace Prisma {
     restaurantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -4852,10 +4942,30 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type WaitlistEntryListRelationFilter = {
     every?: WaitlistEntryWhereInput
     some?: WaitlistEntryWhereInput
     none?: WaitlistEntryWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type WaitlistEntryOrderByRelationAggregateInput = {
@@ -4870,6 +4980,8 @@ export namespace Prisma {
     address?: SortOrder
     city?: SortOrder
     state?: SortOrder
+    cuisine?: SortOrder
+    image?: SortOrder
   }
 
   export type RestaurantAvgOrderByAggregateInput = {
@@ -4884,6 +4996,8 @@ export namespace Prisma {
     address?: SortOrder
     city?: SortOrder
     state?: SortOrder
+    cuisine?: SortOrder
+    image?: SortOrder
   }
 
   export type RestaurantMinOrderByAggregateInput = {
@@ -4894,6 +5008,8 @@ export namespace Prisma {
     address?: SortOrder
     city?: SortOrder
     state?: SortOrder
+    cuisine?: SortOrder
+    image?: SortOrder
   }
 
   export type RestaurantSumOrderByAggregateInput = {
@@ -4934,6 +5050,24 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4960,6 +5094,7 @@ export namespace Prisma {
     restaurantId?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
+    tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
   }
@@ -4967,6 +5102,7 @@ export namespace Prisma {
   export type WaitlistEntryAvgOrderByAggregateInput = {
     id?: SortOrder
     restaurantId?: SortOrder
+    tableSize?: SortOrder
   }
 
   export type WaitlistEntryMaxOrderByAggregateInput = {
@@ -4974,6 +5110,7 @@ export namespace Prisma {
     restaurantId?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
+    tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
   }
@@ -4983,6 +5120,7 @@ export namespace Prisma {
     restaurantId?: SortOrder
     name?: SortOrder
     phoneNumber?: SortOrder
+    tableSize?: SortOrder
     createdAt?: SortOrder
     notified?: SortOrder
   }
@@ -4990,6 +5128,7 @@ export namespace Prisma {
   export type WaitlistEntrySumOrderByAggregateInput = {
     id?: SortOrder
     restaurantId?: SortOrder
+    tableSize?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5059,6 +5198,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type WaitlistEntryUpdateManyWithoutRestaurantNestedInput = {
@@ -5144,6 +5287,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5188,6 +5345,34 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5229,6 +5414,7 @@ export namespace Prisma {
   export type WaitlistEntryCreateWithoutRestaurantInput = {
     name: string
     phoneNumber: string
+    tableSize?: number
     createdAt?: Date | string
     notified?: boolean
   }
@@ -5237,6 +5423,7 @@ export namespace Prisma {
     id?: number
     name: string
     phoneNumber: string
+    tableSize?: number
     createdAt?: Date | string
     notified?: boolean
   }
@@ -5275,6 +5462,7 @@ export namespace Prisma {
     restaurantId?: IntFilter<"WaitlistEntry"> | number
     name?: StringFilter<"WaitlistEntry"> | string
     phoneNumber?: StringFilter<"WaitlistEntry"> | string
+    tableSize?: IntFilter<"WaitlistEntry"> | number
     createdAt?: DateTimeFilter<"WaitlistEntry"> | Date | string
     notified?: BoolFilter<"WaitlistEntry"> | boolean
   }
@@ -5286,6 +5474,8 @@ export namespace Prisma {
     address: string
     city: string
     state: string
+    cuisine?: string | null
+    image?: string | null
   }
 
   export type RestaurantUncheckedCreateWithoutWaitlistInput = {
@@ -5296,6 +5486,8 @@ export namespace Prisma {
     address: string
     city: string
     state: string
+    cuisine?: string | null
+    image?: string | null
   }
 
   export type RestaurantCreateOrConnectWithoutWaitlistInput = {
@@ -5321,6 +5513,8 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
+    cuisine?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RestaurantUncheckedUpdateWithoutWaitlistInput = {
@@ -5331,12 +5525,15 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
+    cuisine?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WaitlistEntryCreateManyRestaurantInput = {
     id?: number
     name: string
     phoneNumber: string
+    tableSize?: number
     createdAt?: Date | string
     notified?: boolean
   }
@@ -5344,6 +5541,7 @@ export namespace Prisma {
   export type WaitlistEntryUpdateWithoutRestaurantInput = {
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -5352,6 +5550,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -5360,6 +5559,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    tableSize?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notified?: BoolFieldUpdateOperationsInput | boolean
   }
