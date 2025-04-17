@@ -14,7 +14,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         >
         <div className="flex justify-center mb-2">
-          <Image src="/images/logo.png" alt="HUEY" width={200} height={200}  />
+          <Image src="/images/logo.png" alt="HUEY" width={250} height={250}  />
         </div>
         <p className="text-sm font-bold text-indigo-500 text-center">Have u eaten yet?</p>
         <p className="text-sm font-bold text-indigo-500 text-center mb-4">Not yet? We'll hold your spot.</p>

@@ -89,22 +89,22 @@ export default function RestaurantsPage() {
       >
       <div className="relative w-full h-[450px]">
         <Image 
-          src="/images/waiting.png" 
+          src="/images/waitline.png" 
           alt="HUEY" 
           fill
           className="object-cover brightness-90"
           priority
         />
         <div className="absolute inset-0 flex items-center justify-center max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-center text-center md:text-left">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-20 items-center text-center md:text-left">
             <Link href="/">
-              <Image className="drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] w-[100px] md:w-[150px]" src="/images/logo.png" alt="HUEY" width={150} height={150} />
+              <Image className="w-[100px] md:w-[150px]" src="/images/logo.png" alt="HUEY" width={150} height={150} />
             </Link>
             <div className="space-y-2">
               <div className="space-y-2">
-                <p className="text-2xl md:text-4xl font-bold text-indigo-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">Find a spot.</p>
-                <p className="text-2xl md:text-4xl font-bold text-indigo-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">Hop in line.</p>
-                <p className="text-lg md:text-4xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)]">...but like from your phone ;)</p>
+                <p className="text-2xl md:text-4xl font-bold text-indigo-500">Find a spot.</p>
+                <p className="text-2xl md:text-4xl font-bold text-indigo-500">Hop in line.</p>
+                <p className="text-lg md:text-4xl font-bold text-white">...but like from your phone ;)</p>
               </div>
             </div>
           </div>
