@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { Search, X } from 'lucide-react';
+import { Search, X, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
@@ -90,7 +90,7 @@ export default function RestaurantsPage() {
   });
 
   return (
-    <div className="p-8 bg-gradient-to-r from-indigo-50 to-white">
+    <div className="min-h-screen p-8 bg-gradient-to-r from-indigo-50 to-white">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ export default function RestaurantsPage() {
         <p className="text-sm text-center font-bold text-gray-800">
           HAVE U EATEN YET?
         </p>
-        <div className="flex flex-col gap-4 md:flex-row mx-12 bg-white rounded-lg p-4 shadow-md">
+        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-white rounded-lg p-4 shadow-md">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
@@ -166,7 +166,7 @@ export default function RestaurantsPage() {
             <p>No restaurants found matching your criteria.</p>
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-12">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:mx-12">
             {filteredRestaurants.map((restaurant) => {
               const waitTime = restaurant._count.waitlist * 12;
               return (
@@ -190,24 +190,29 @@ export default function RestaurantsPage() {
                   </div>
                   <CardContent className="px-4 pb-2 space-y-2">
                     <p className="text-xs font-bold text-gray-600 mt-3">{restaurant.description}</p>
-                    <div className="flex flex-col text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 font-medium">Estimated Wait Time</span>
-                        <span className="text-gray-800 font-semibold">{waitTime} min</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 font-medium">Parties Waiting</span>
-                        <span className="text-gray-800 font-semibold">{restaurant._count.waitlist}</span>
-                      </div>
-                    </div>
-                    <div className="pt-1 border-t border-gray-100">
-                      <div className="text-sm">
-                        <div className="text-gray-600 text-xs mt-1">
-                          {restaurant.address}
+                    
+                    <div className="space-y-4 py-3 border-y border-gray-100">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="space-y-1">
+                            <p className="text-xs font-medium text-gray-900">{restaurant.address}</p>
+                            <p className="text-xs text-gray-500">{restaurant.city}, {restaurant.state}</p>
+                          </div>
+                          <Button variant="outline" size="sm" className="cursor-pointer h-7 px-3 text-xs text-indigo-600 hover:text-indigo-700 border-indigo-200 hover:border-indigo-300"
+                          onClick={() => {
+                            const url = 'https://www.google.com/maps/place/Imaginary+Pl,+Aberdeen+Township,+NJ+07747/@40.3941899,-74.2220197,17z';
+                            window.open(url, '_blank');
+                          }}
+                          >
+                            Get Directions
+                          </Button>
                         </div>
-                        <div className="text-gray-600 text-xs">
-                          {restaurant.city}, {restaurant.state}
-                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <p className="text-xs text-gray-600">{restaurant.phone}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -231,3 +236,4 @@ export default function RestaurantsPage() {
     </div>
   );
 }
+

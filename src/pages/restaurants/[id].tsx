@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Toaster, toast } from "sonner";
 import { Utensils, ArrowLeft } from "lucide-react";
 import Link from 'next/link';
+import { motion } from "framer-motion";
 
 type Restaurant = {
   id: number;
@@ -110,6 +111,11 @@ export default function RestaurantDetailPage() {
               <p className="text-sm font-bold">Back to Restaurants</p>
             </Link>
           </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
           <div className="text-center relative z-10">
             <div className="mb-6 flex justify-center">
               <div className="rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 shadow-md">
@@ -167,6 +173,7 @@ export default function RestaurantDetailPage() {
               There are currently <span className="text-indigo-600">{waitlistEntries.length}</span> parties on the waitlist for this restaurant.
             </p>
           </div>
+          </motion.div>
           {error && <p className="mt-4 text-red-600 text-center">{error}</p>}
         </>
       ) : (
