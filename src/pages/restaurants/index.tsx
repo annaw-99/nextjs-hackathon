@@ -90,13 +90,13 @@ export default function RestaurantsPage() {
   });
 
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-r from-indigo-50 to-white">
+    <div className="min-h-screen p-8 bg-gradient-to-r from-indigo-100 to-white">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-16 pt-8">
         <Link href="/" className="text-5xl font-bold mb-1 text-indigo-500 flex justify-center">
           HUEY
         </Link>
@@ -107,7 +107,7 @@ export default function RestaurantsPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search"
+              placeholder="Look for a restaurant..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 border-indigo-200 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm"
@@ -168,7 +168,6 @@ export default function RestaurantsPage() {
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:mx-12">
             {filteredRestaurants.map((restaurant) => {
-              const waitTime = restaurant._count.waitlist * 12;
               return (
                 <Card key={restaurant.id} className="py-0 gap-y-1 group relative overflow-hidden transition-all duration-300 hover:shadow-xl">
                   <div className="relative h-48 w-full overflow-hidden">

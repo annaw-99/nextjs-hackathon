@@ -73,6 +73,21 @@ export default function RestaurantDetailPage() {
 
   const computedWaitTime = `${waitlistEntries.length * 12} min`;
 
+  const formatPhoneNumber = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+    if (match) {
+      const formatted = [match[1], match[2], match[3]].filter(Boolean).join('-');
+      return formatted;
+    }
+    return value;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setPhoneNumber(formatted);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
@@ -150,7 +165,8 @@ export default function RestaurantDetailPage() {
                       type="text"
                       placeholder="000-000-0000"
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={handlePhoneChange}
+                      maxLength={12}
                       required
                     />
                   </div>
@@ -160,7 +176,15 @@ export default function RestaurantDetailPage() {
                       type="number"
                       placeholder="Enter party size"
                       value={tableSize}
-                      onChange={(e) => setTableSize(Number(e.target.value))}
+                      onChange={(e) => {
+                        const value = Number(e.target.value);
+                        if (value >= 1 && value <= 6) {
+                          setTableSize(value);
+                        }
+                      }}
+                      min={1}
+                      max={6}
+                      required
                     />
                   </div>
                 </div>

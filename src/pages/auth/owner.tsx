@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Link from 'next/link';
+import { motion } from "framer-motion";
 
 export default function OwnerPage() {
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
@@ -23,6 +24,21 @@ export default function OwnerPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [regMessage, setRegMessage] = useState('');
   const [regError, setRegError] = useState('');
+
+  const formatPhoneNumber = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+    if (match) {
+      const formatted = [match[1], match[2], match[3]].filter(Boolean).join('-');
+      return formatted;
+    }
+    return value;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setPhoneNumber(formatted);
+  };
 
   // login submission handler
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,12 +84,17 @@ export default function OwnerPage() {
 
   return (
     <div className="min-h-screen flex">
-      <div className="w-[50%] bg-indigo-300 flex flex-col items-center justify-center p-8">
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-[50%] bg-indigo-500 flex flex-col items-center justify-center p-8"
+      >
         <div className="w-full max-w-md">
-          <Link href="/" className="text-4xl font-bold mb-1">
+          <Link href="/" className="text-4xl font-bold mb-1 text-white">
             HUEY
           </Link>
-          <p className="text-xs text-gray-500 mb-3">Login or register to get started.</p>
+          <p className="text-xs text-indigo-100 mb-3">Login or register to get started.</p>
           <div className="space-y-3">
             <Button
               onClick={() => {
@@ -82,8 +103,8 @@ export default function OwnerPage() {
               }}
               className={`w-full cursor-pointer transition-all duration-300 ${
                 activeTab === 'login'
-                  ? 'bg-indigo-500 text-white hover:bg-indigo-600'
-                  : 'bg-white text-indigo-500 hover:bg-neutral-100'
+                  ? 'bg-white text-indigo-500 hover:bg-gray-200'
+                  : 'bg-indigo-400 text-white hover:bg-indigo-600'
               }`}
             >
               Login
@@ -95,17 +116,22 @@ export default function OwnerPage() {
               }}
               className={`w-full cursor-pointer transition-all duration-300 ${
                 activeTab === 'register'
-                  ? 'bg-indigo-500 text-white hover:bg-indigo-600'
-                  : 'bg-white text-indigo-500 hover:bg-neutral-100'
+                  ? 'bg-white text-indigo-500 hover:bg-gray-200'
+                  : 'bg-indigo-400 text-white hover:bg-indigo-600'
               }`}
             >
               Register
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-[50%] flex items-center justify-center p-8">
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-[50%] flex items-center justify-center p-8"
+      >
         <div className="w-full max-w-md">
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-6">
@@ -149,7 +175,14 @@ export default function OwnerPage() {
               </div>
 
               {registerStep === 1 ? (
-                <div className="space-y-4">
+                <motion.div
+                  key="step1"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: 20, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4"
+                >
                   <Input 
                     type="text" 
                     placeholder="Restaurant Name" 
@@ -163,11 +196,12 @@ export default function OwnerPage() {
                     placeholder="Phone Number" 
                     className="w-full" 
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    onChange={handlePhoneChange}
+                    maxLength={12}
                     required 
                   />
                   <Textarea 
-                    placeholder="Jot down hash tags for your restaurant (e.g. #Italian #Pizza #Pasta)" 
+                    placeholder="Jot down hash tags for your restaurant (e.g. #italian #pizza #pasta)" 
                     className="w-full" 
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -180,9 +214,16 @@ export default function OwnerPage() {
                   >
                     Next
                   </Button>
-                </div>
+                </motion.div>
               ) : (
-                <div className="space-y-4">
+                <motion.div
+                  key="step2"
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -20, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4"
+                >
                   <Input 
                     type="text" 
                     placeholder="Street Address" 
@@ -247,12 +288,12 @@ export default function OwnerPage() {
                       Register
                     </Button>
                   </div>
-                </div>
+                </motion.div>
               )}
             </form>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

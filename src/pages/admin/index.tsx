@@ -13,9 +13,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { toast } from "sonner";
 import { Toaster } from "sonner";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 type WaitlistEntry = {
   id: number;
@@ -44,6 +53,7 @@ export default function AdminWaitlist() {
 
   const [waitlistData, setWaitlistData] = useState<WaitlistEntry[]>([]);
   const [error, setError] = useState<string>("");
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   useEffect(() => {
     if (!restaurantId) return;
@@ -104,6 +114,11 @@ export default function AdminWaitlist() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div className="flex flex-col space-y-6 mb-4">
           <div className="flex items-center justify-between">
@@ -117,9 +132,32 @@ export default function AdminWaitlist() {
               </Button>
               <Button
                 variant="outline"
-                className="cursor-pointer flex bg-indigo-600 text-white font-bold hover:bg-indigo-700 hover:text-white">
+                className="cursor-pointer flex bg-indigo-600 text-white font-bold hover:bg-indigo-700 hover:text-white"
+                onClick={() => setIsEditDialogOpen(true)}>
                 <Pencil className="h-4 w-4" />Edit Profile
               </Button>
+
+              <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Edit Profile</DialogTitle>
+                    <DialogDescription>
+                      Future development to be coming
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="flex justify-end">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="cursor-pointer"
+                      onClick={() => setIsEditDialogOpen(false)}
+                    >
+                      Close
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+
               <Button
               variant="outline"
               className="cursor-pointer flex bg-white/50 text-gray-700 font-bold hover:bg-gray-100"
@@ -240,6 +278,7 @@ export default function AdminWaitlist() {
           </Table>
         </div>
       </div>
+      </motion.div>
       <Toaster />
     </div>
   );
