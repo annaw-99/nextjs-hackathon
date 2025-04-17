@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { Search, X, MapPin } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
@@ -48,20 +48,12 @@ const cityTypes = [
   "New York",
 ];
 
-const stateTypes = [
-  "All",
-  "California",
-  "Washington",
-  "New York",
-];
-
 export default function RestaurantsPage() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
-  const [selectedState, setSelectedState] = useState('');
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -85,44 +77,60 @@ export default function RestaurantsPage() {
       restaurant.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCuisine = selectedCuisine === "" ||selectedCuisine === "All" ||restaurant.cuisine === selectedCuisine;
     const matchesCity = selectedCity === "" || selectedCity === "All" || restaurant.city === selectedCity;
-    const matchesState = selectedState === "" || selectedState === "All" || restaurant.state === selectedState;
-    return matchesSearch && matchesCuisine && matchesCity && matchesState;
+    return matchesSearch && matchesCuisine && matchesCity;
   });
 
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-r from-indigo-100 to-white">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-100 to-white">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-      <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-16 pt-8">
-        <Link href="/" className="text-5xl font-bold mb-1 text-indigo-500 flex justify-center">
-          HUEY
-        </Link>
-        <p className="text-sm text-center font-bold text-gray-800">
-          HAVE U EATEN YET?
-        </p>
-        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-white rounded-lg p-4 shadow-md">
+      <div className="relative w-full h-[450px]">
+        <Image 
+          src="/images/waiting.png" 
+          alt="HUEY" 
+          fill
+          className="object-cover brightness-90"
+          priority
+        />
+        <div className="absolute inset-0 flex items-center justify-center max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-center text-center md:text-left">
+            <Link href="/">
+              <Image className="drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] w-[100px] md:w-[150px]" src="/images/logo.png" alt="HUEY" width={150} height={150} />
+            </Link>
+            <div className="space-y-2">
+              <div className="space-y-2">
+                <p className="text-2xl md:text-4xl font-bold text-indigo-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">Find a spot.</p>
+                <p className="text-2xl md:text-4xl font-bold text-indigo-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">Hop in line.</p>
+                <p className="text-lg md:text-4xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)]">...but like from your phone ;)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="space-y-6 max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16 pt-8">
+        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-white/40 backdrop-blur-sm rounded-lg p-4 shadow-md">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
               placeholder="Look for a restaurant..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 border-indigo-200 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm"
+              className="pl-9 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
               >
                 <X className="h-4 w-4" />
               </button>
             )}
           </div>
           <Select value={selectedCuisine} onValueChange={setSelectedCuisine}>
-            <SelectTrigger className="cursor-pointer w-full md:w-[180px] border-indigo-200 focus:ring-indigo-500">
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px]">
               <SelectValue placeholder="Select Cuisine Type" />
             </SelectTrigger>
             <SelectContent>
@@ -134,25 +142,13 @@ export default function RestaurantsPage() {
             </SelectContent>
           </Select>
           <Select value={selectedCity} onValueChange={setSelectedCity}>
-            <SelectTrigger className="cursor-pointer w-full md:w-[180px] border-indigo-200 focus:ring-indigo-500">
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px]">
               <SelectValue placeholder="Select City" />
             </SelectTrigger>
             <SelectContent>
               {cityTypes.map((city) => (
                 <SelectItem key={city} value={city} className="cursor-pointer">
                   {city}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={selectedState} onValueChange={setSelectedState}>
-            <SelectTrigger className="cursor-pointer w-full md:w-[180px] border-indigo-200 focus:ring-indigo-500">
-              <SelectValue placeholder="Select State" />
-            </SelectTrigger>
-            <SelectContent>
-              {stateTypes.map((state) => (
-                <SelectItem key={state} value={state} className="cursor-pointer">
-                  {state}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -228,8 +224,8 @@ export default function RestaurantsPage() {
           </div>
         )}
       </div>
-      <footer className="row-start-4 mt-8 flex items-center justify-center">
-        <p className="text-[10px]">© 2025 HUEY. All Rights Reserved.</p>
+      <footer className="row-start-4 mt-8 py-2 flex items-center justify-center">
+        <p className="text-gray-500 text-[10px]">© 2025 HUEY. All Rights Reserved.</p>
       </footer>
       </motion.div>
     </div>

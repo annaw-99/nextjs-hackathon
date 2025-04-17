@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from "framer-motion";
 
 export default function OwnerPage() {
@@ -92,7 +93,7 @@ export default function OwnerPage() {
       >
         <div className="w-full max-w-md">
           <Link href="/" className="text-4xl font-bold mb-1 text-white">
-            HUEY
+            <h1 className="text-4xl font-bold mb-1 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">HUEY</h1>
           </Link>
           <p className="text-xs text-indigo-100 mb-3">Login or register to get started.</p>
           <div className="space-y-3">

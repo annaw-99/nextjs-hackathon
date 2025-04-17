@@ -21,6 +21,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 import { toast } from "sonner";
 import { Toaster } from "sonner";
 import { useRouter } from "next/navigation";
@@ -142,7 +149,7 @@ export default function AdminWaitlist() {
                   <DialogHeader>
                     <DialogTitle>Edit Profile</DialogTitle>
                     <DialogDescription>
-                      Future development to be coming
+                      Future development to be coming soon ;)
                     </DialogDescription>
                   </DialogHeader>
                   <div className="flex justify-end">
@@ -251,8 +258,18 @@ export default function AdminWaitlist() {
                         disabled={entry.notified || entry.seated}
                         onClick={() => handleNotify(entry.id)}
                       >
-                        <Bell className="h-4 w-4" />
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Bell className="h-4 w-4" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Notify Guest</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                       </Button>
+                      
                       <Button
                         size="sm"
                         variant="outline"
@@ -260,7 +277,16 @@ export default function AdminWaitlist() {
                         disabled={entry.seated}
                         onClick={() => handleSeat(entry.id)}
                       >
-                        <Check className="h-4 w-4" />
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                          <Check className="h-4 w-4" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Seat Guest</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                       </Button>
                       <Button
                         size="sm"
@@ -268,7 +294,16 @@ export default function AdminWaitlist() {
                         className="border-red-200 bg-red-50 text-red-600 hover:bg-red-100"
                         onClick={() => handleRemove(entry.id)}
                       >
-                        <Trash className="h-4 w-4" />
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                          <Trash className="h-4 w-4" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Remove Guest</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                       </Button>
                     </div>
                   </TableCell>

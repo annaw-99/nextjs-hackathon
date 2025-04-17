@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import Image from "next/image"
 import { motion } from "framer-motion"
-
 export default function Home() {
   return (
     <div
@@ -13,17 +13,20 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         >
-        <h1 className="text-6xl font-extrabold text-indigo-500 text-center mb-1">HUEY</h1>
-        <p className="text-sm font-medium text-indigo-500 text-center mb-4">The easiest way to wait in line.</p>
+        <div className="flex justify-center mb-2">
+          <Image src="/images/logo.png" alt="HUEY" width={200} height={200}  />
+        </div>
+        <p className="text-sm font-bold text-indigo-500 text-center">Have u eaten yet?</p>
+        <p className="text-sm font-bold text-indigo-500 text-center mb-4">Not yet? We'll hold your spot.</p>
         <div className="flex gap-4 items-center flex-col sm:flex-row mt-4">
-          <Link href="/auth/owner">
-            <Button className="bg-indigo-500 text-white hover:bg-indigo-700 font-bold cursor-pointer">
-              I'm a Restaurant Owner
-            </Button>
-          </Link>
           <Link href="/restaurants">
             <Button variant="outline" className="bg-indigo-500 text-white hover:bg-indigo-700 hover:text-white font-bold cursor-pointer">
-              I'm a Customer
+              I'm a foodie
+            </Button>
+          </Link>
+          <Link href="/auth/owner">
+            <Button className="bg-indigo-500 text-white hover:bg-indigo-700 font-bold cursor-pointer">
+              I run the kitchen
             </Button>
           </Link>
         </div>
