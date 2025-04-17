@@ -93,7 +93,7 @@ export default function OwnerPage() {
       >
         <div className="w-full max-w-md">
           <Link href="/" className="text-4xl font-bold mb-1 text-white">
-            <h1 className="text-4xl font-bold mb-1 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">HUEY</h1>
+            <Image src="/images/logo-white.png" alt="HUEY" width={100} height={100} className="mb-2" />
           </Link>
           <p className="text-xs text-indigo-100 mb-3">Login or register to get started.</p>
           <div className="space-y-3">
