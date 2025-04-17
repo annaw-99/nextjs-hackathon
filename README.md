@@ -1,40 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+## HUEY - Have U Eaten Yet?
 
-## Getting Started
+> This is a project for Next.js Hackathon 2025
 
-First, run the development server:
+HUEY is a modern web application that simplifies restaurant waitlist management. It allows diners to join waitlists remotely from their phones and helps restaurants manage their waiting customers efficiently.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🛠️ Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend**: Next.js, TypeScript, Tailwind CSS
+- **UI Components**: [shadcn/ui]((https://ui.shadcn.com/))
+- **Animations**: Framer Motion
+- **Authentication**: [NextAuth.js](https://next-auth.js.org/)
+- **Database**: [Prisma Postgres](https://www.prisma.io/)
+- **Styling**: Tailwind CSS with custom configurations
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### ✨ Features
+- for diners: browse restaurants with real-time waitlist information and join waitlists remotely from your phone.
+- for restaurant owners: manage waitlist entries and get real-time updates.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 👩🏻‍💻 Getting Started
+To run this project locally:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+#### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository
+    ```bash
+    git clone https://github.com/annaw-99/huey.git
+    cd huey
+    ```
 
-## Learn More
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Set up environment variables
+    Create a `.env` file in the root directory with the following variables:
+    ```env
+    DATABASE_URL="your-database-url"
+    NEXTAUTH_SECRET="your-secret"
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+4. Run database migrations
+    ```bash
+    npx prisma migrate dev
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Start the development server
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
 
-## Deploy on Vercel
+6. Open your browser and navigate to `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Features for Future Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- SMS notifications for customers through [twilio](https://www.twilio.com/en-us)
+- Restaurant profile editing functionalities
+- Restaurant analytics dashboard (e.g. average wait time, etc)
+
+### ☎️ Contact
+Feel free to reach out if you have any questions or suggestions!
+
+### License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
