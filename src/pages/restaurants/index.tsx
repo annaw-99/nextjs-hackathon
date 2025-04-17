@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { motion } from "framer-motion";
 
 type Restaurant = {
   id: number;
@@ -32,11 +33,11 @@ type Restaurant = {
 
 const cuisineTypes = [
   "All",
-  "Western",
-  "Asian",
-  "Italian",
-  "Mediterranean",
-  "Other",
+  "East Asian",
+  "South Asian",
+  "European",
+  "American",
+  "Mexican/Latin"
 ];
 
 const cityTypes = [
@@ -90,18 +91,23 @@ export default function RestaurantsPage() {
 
   return (
     <div className="p-8 bg-gradient-to-r from-indigo-50 to-white">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
       <div className="space-y-6">
-        <Link href="/" className="text-4xl font-bold mb-1 text-indigo-500 flex justify-center">
+        <Link href="/" className="text-5xl font-bold mb-1 text-indigo-500 flex justify-center">
           HUEY
         </Link>
         <p className="text-sm text-center font-bold text-gray-800">
           HAVE U EATEN YET?
         </p>
-        <div className="flex flex-col gap-4 md:flex-row mx-12">
+        <div className="flex flex-col gap-4 md:flex-row mx-12 bg-white rounded-lg p-4 shadow-md">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search restaurants or cuisine..."
+              placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 border-indigo-200 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm"
@@ -164,7 +170,7 @@ export default function RestaurantsPage() {
             {filteredRestaurants.map((restaurant) => {
               const waitTime = restaurant._count.waitlist * 12;
               return (
-                <Card key={restaurant.id} className="py-0 gap-y-1 group relative overflow-hidden border-indigo-100 transition-all duration-300 hover:shadow-xl">
+                <Card key={restaurant.id} className="py-0 gap-y-1 group relative overflow-hidden transition-all duration-300 hover:shadow-xl">
                   <div className="relative h-48 w-full overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                     <Image
@@ -219,8 +225,9 @@ export default function RestaurantsPage() {
         )}
       </div>
       <footer className="row-start-4 mt-8 flex items-center justify-center">
-        <p className="text-[10px]">© 2025 EasiEats. All rights reserved.</p>
+        <p className="text-[10px]">© 2025 HUEY. All Rights Reserved.</p>
       </footer>
+      </motion.div>
     </div>
   );
 }
