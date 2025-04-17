@@ -96,9 +96,9 @@ export default function RestaurantsPage() {
           priority
         />
         <div className="absolute inset-0 flex items-center justify-center max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-20 items-center text-center md:text-left">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 md:pl-20 items-center text-center md:text-left">
             <Link href="/">
-              <Image className="w-[100px] md:w-[150px]" src="/images/logo.png" alt="HUEY" width={150} height={150} />
+              <Image className="w-[100px] md:w-[200px]" src="/images/logo.png" alt="HUEY" width={150} height={150} />
             </Link>
             <div className="space-y-2">
               <div className="space-y-2">
@@ -111,7 +111,7 @@ export default function RestaurantsPage() {
         </div>
       </div>
       <div className="space-y-6 max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16 pt-8">
-        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-white/40 backdrop-blur-sm rounded-lg p-4 shadow-md">
+        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-transparent backdrop-blur-sm rounded-lg p-4 shadow-md">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
