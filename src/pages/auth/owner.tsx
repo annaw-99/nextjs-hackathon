@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,8 +8,20 @@ import Image from 'next/image';
 import { motion } from "framer-motion";
 
 export default function OwnerPage() {
+  const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
   const [registerStep, setRegisterStep] = useState<1 | 2>(1);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -82,6 +94,32 @@ export default function OwnerPage() {
       setRegError(error.message);
     }
   };
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-100 to-white p-4 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center w-full max-w-sm mx-auto px-4"
+        >
+          <div className="mb-6 flex justify-center">
+            <Image src="/images/logo.png" alt="HUEY" width={150} height={150} className="mx-auto" />
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Desktop Access Required</h1>
+          <p className="text-gray-600 mb-6">
+            The restaurant management dashboard is optimized for desktop use. Please access this page from a desktop or laptop computer.
+          </p>
+          <Link href="/">
+            <Button className="bg-indigo-600 text-white hover:bg-indigo-700 font-bold">
+              Return to Home
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex">
@@ -194,7 +232,7 @@ export default function OwnerPage() {
                   />
                   <Input 
                     type="text" 
-                    placeholder="Phone Number" 
+                    placeholder="Phone Number (Please use a fake number)" 
                     className="w-full" 
                     value={phoneNumber}
                     onChange={handlePhoneChange}

@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster, toast } from "sonner";
-import { Utensils, ArrowLeft } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Utensils, ArrowLeft, Info } from "lucide-react";
 import Link from 'next/link';
 import { motion } from "framer-motion";
 
@@ -137,7 +143,21 @@ export default function RestaurantDetailPage() {
                 <Utensils className="h-6 w-6 text-white" />
               </div>
             </div>
-            <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">{restaurant.name}</h1>
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <h1 className="text-3xl font-bold text-gray-900 md:text-4xl">{restaurant.name}</h1>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button variant="outline" className="bg-red-50 hover:bg-red-100 border-red-200">
+                      <Info className="h-4 w-4 text-red-600" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="text-sm">This is a demo site. Please use test data instead of real personal information.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
             <div className="mb-2 flex items-center justify-center gap-2 text-gray-600 text-sm font-bold">
               <span>{restaurant.cuisine}</span>
               <span>•</span>
@@ -163,7 +183,7 @@ export default function RestaurantDetailPage() {
                     <Label htmlFor="phoneNumber" className="font-bold">Phone Number</Label>
                     <Input
                       type="text"
-                      placeholder="000-000-0000"
+                      placeholder="Fake Number"
                       value={phoneNumber}
                       onChange={handlePhoneChange}
                       maxLength={12}
