@@ -65,7 +65,7 @@ export default function RestaurantsPage() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const res = await fetch('/api/restaurants');
+        const res = await fetch('/api/restaurants', { cache: 'no-store' });
         if (!res.ok) {
           throw new Error(`Error: ${res.statusText}`);
         }

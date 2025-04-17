@@ -53,7 +53,7 @@ export default function RestaurantDetailPage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`/api/waitlist/${id}?nocache=${Date.now()}`)
+      fetch(`/api/waitlist?restaurantId=${id}&nocache=${Date.now()}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(`Error: ${res.statusText}`);
@@ -92,7 +92,7 @@ export default function RestaurantDetailPage() {
       }
       await res.json();
       toast.success('Successfully joined the waitlist!');
-      const updatedRes = await fetch(`/api/waitlist/${id}?nocache=${Date.now()}`);
+      const updatedRes = await fetch(`/api/waitlist?restaurantId=${id}&nocache=${Date.now()}`);
       const updatedData: WaitlistEntry[] = await updatedRes.json();
       setWaitlistEntries(updatedData);
     } catch (err: any) {
