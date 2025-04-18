@@ -193,7 +193,7 @@ export default function RestaurantsPage() {
                             <p className="text-xs font-medium text-gray-900">{restaurant.address}</p>
                             <p className="text-xs text-gray-500">{restaurant.city}, {restaurant.state}</p>
                           </div>
-                          <Button variant="outline" size="sm" className="cursor-pointer h-7 px-3 text-xs text-indigo-600 hover:text-indigo-700 border-indigo-200 hover:border-indigo-300"
+                          <Button variant="outline" size="sm" className="cursor-pointer h-7 px-3 text-xs text-indigo-600 bg-white hover:text-indigo-700 border-indigo-200 hover:border-indigo-300"
                           onClick={() => {
                             const url = 'https://www.google.com/maps/place/Imaginary+Pl,+Aberdeen+Township,+NJ+07747/@40.3941899,-74.2220197,17z';
                             window.open(url, '_blank');

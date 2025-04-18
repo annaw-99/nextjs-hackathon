@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export default function Home() {
   return (
     <div
-      className={`font-[family-name:var(--font-geist-sans)] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen bg-gradient-to-r from-indigo-100 to-white p-2 pb-20 gap-16 sm:p-4`}
+      className={`font-[family-name:var(--font-geist-sans)] grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen bg-gradient-to-r from-indigo-100 to-white p-4 gap-16 sm:p-4`}
     >
       <main className="flex flex-col row-start-2 items-center justify-center sm:items-center">
         <motion.div

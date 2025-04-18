@@ -16,7 +16,6 @@ export default function OwnerPage() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
@@ -97,18 +96,17 @@ export default function OwnerPage() {
 
   if (isMobile) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-100 to-white p-4 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center w-full max-w-sm mx-auto px-4"
-        >
-          <div className="mb-6 flex justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-100 to-white p-4 overflow-hidden">
+          <div className="mb-6 flex">
             <Image src="/images/logo.png" alt="HUEY" width={150} height={150} className="mx-auto" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Desktop Access Required</h1>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-6 text-center">
             The restaurant management dashboard is optimized for desktop use. Please access this page from a desktop or laptop computer.
           </p>
           <Link href="/">
@@ -116,8 +114,8 @@ export default function OwnerPage() {
               Return to Home
             </Button>
           </Link>
-        </motion.div>
       </div>
+      </motion.div>
     );
   }
 
