@@ -167,7 +167,7 @@ export default function OwnerPage() {
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="w-[50%] flex items-center justify-center p-8"
+        className="w-[50%] flex items-center justify-center p-8 bg-white"
       >
         <div className="w-full max-w-md">
           {activeTab === 'login' ? (

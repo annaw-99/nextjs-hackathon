@@ -145,9 +145,9 @@ export default function AdminWaitlist() {
               </Button>
 
               <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-[425px] bg-white">
                   <DialogHeader>
-                    <DialogTitle>Edit Profile</DialogTitle>
+                    <DialogTitle className="text-black">Edit Profile</DialogTitle>
                     <DialogDescription>
                       Future development to be coming soon ;)
                     </DialogDescription>
@@ -229,7 +229,7 @@ export default function AdminWaitlist() {
                   <TableCell className="py-3">
                     <div className="inline-flex items-center gap-1">
                       <Users className="h-4 w-4 text-gray-400" />
-                      <span>{entry.tableSize}</span>
+                      <span className="text-gray-600">{entry.tableSize}</span>
                     </div>
                   </TableCell>
                   <TableCell className="py-3">

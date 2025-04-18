@@ -96,14 +96,16 @@ export default function RestaurantsPage() {
           priority
         />
         <div className="absolute inset-0 flex items-center justify-center max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 md:pl-20 items-center text-center md:text-left">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-16 md:pl-20 items-center text-center md:text-left">
             <Link href="/">
               <Image className="w-[100px] md:w-[200px]" src="/images/logo.png" alt="HUEY" width={150} height={150} />
             </Link>
             <div className="space-y-2">
-              <div className="space-y-2">
-                <p className="text-2xl md:text-4xl font-bold text-indigo-500">Find a spot.</p>
-                <p className="text-2xl md:text-4xl font-bold text-indigo-500">Hop in line.</p>
+              <div className="flex flex-col md:space-y-2">
+                <div className="flex items-center gap-2 md:flex-col md:items-start md:gap-0">
+                  <p className="text-2xl md:text-4xl md:pb-1 font-bold text-indigo-500">Find a spot.</p>
+                  <p className="text-2xl md:text-4xl font-bold text-indigo-500">Hop in <span className="text-white">line.</span></p>
+                </div>
                 <p className="text-lg md:text-4xl font-bold text-white">...but like from your phone ;)</p>
               </div>
             </div>
@@ -113,24 +115,24 @@ export default function RestaurantsPage() {
       <div className="space-y-6 max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16 pt-8">
         <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-white/40 backdrop-blur-sm rounded-lg p-4 shadow-md">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-black" />
             <Input
               placeholder="Look for a restaurant..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm"
+              className="pl-9 focus-visible:border-indigo-400 focus-visible:ring-transparent shadow-sm bg-white/40"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-2.5 text-black hover:text-black"
               >
                 <X className="h-4 w-4" />
               </button>
             )}
           </div>
           <Select value={selectedCuisine} onValueChange={setSelectedCuisine}>
-            <SelectTrigger className="cursor-pointer w-full md:w-[180px]">
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px] bg-white/40">
               <SelectValue placeholder="Select Cuisine Type" />
             </SelectTrigger>
             <SelectContent>
@@ -142,7 +144,7 @@ export default function RestaurantsPage() {
             </SelectContent>
           </Select>
           <Select value={selectedCity} onValueChange={setSelectedCity}>
-            <SelectTrigger className="cursor-pointer w-full md:w-[180px]">
+            <SelectTrigger className="cursor-pointer w-full md:w-[180px] bg-white/40">
               <SelectValue placeholder="Select City" />
             </SelectTrigger>
             <SelectContent>
