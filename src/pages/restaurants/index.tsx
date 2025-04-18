@@ -111,7 +111,7 @@ export default function RestaurantsPage() {
         </div>
       </div>
       <div className="space-y-6 max-w-7xl mx-auto px-8 lg:px-12 2xl:px-16 pt-8">
-        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-transparent backdrop-blur-sm rounded-lg p-4 shadow-md">
+        <div className="flex flex-col gap-4 md:flex-row lg:mx-12 bg-white/40 backdrop-blur-sm rounded-lg p-4 shadow-md">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             <Input
