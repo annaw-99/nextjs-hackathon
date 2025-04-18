@@ -4,6 +4,15 @@
 
 HUEY is a modern web application that simplifies restaurant waitlist management. It allows diners to join waitlists remotely from their phones and helps restaurants manage their waiting customers efficiently.
 
+### ✨ Features
+- for diners: browse restaurants with real-time waitlist information and join waitlists remotely from your phone.
+- for restaurant owners: manage waitlist entries and get real-time updates.
+
+### 🙌🏻 Testing
+To view the admin page, use the credentials below: <br>
+- Email = `wokandwave@gmail.com`
+- Password = `123456`
+
 ### 🛠️ Tech Stack
 
 - **Frontend**: Next.js, TypeScript, Tailwind CSS
@@ -12,10 +21,6 @@ HUEY is a modern web application that simplifies restaurant waitlist management.
 - **Authentication**: [NextAuth.js](https://next-auth.js.org/)
 - **Database**: [Prisma Postgres](https://www.prisma.io/)
 - **Styling**: Tailwind CSS with custom configurations
-
-### ✨ Features
-- for diners: browse restaurants with real-time waitlist information and join waitlists remotely from your phone.
-- for restaurant owners: manage waitlist entries and get real-time updates.
 
 ### 👩🏻‍💻 Getting Started
 To run this project locally:
