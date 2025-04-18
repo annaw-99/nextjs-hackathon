@@ -11,6 +11,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Utensils, ArrowLeft, Info } from "lucide-react";
 import Link from 'next/link';
 import { motion } from "framer-motion";
@@ -145,18 +150,20 @@ export default function RestaurantDetailPage() {
             </div>
             <div className="flex items-center justify-center gap-2 mb-2">
               <h1 className="text-3xl font-bold text-gray-900 md:text-4xl">{restaurant.name}</h1>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Button variant="outline" className="bg-red-50 hover:bg-red-100 border-red-200">
-                      <Info className="h-4 w-4 text-red-600" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="text-sm">This is a demo site. Please use test data instead of real personal information.</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="bg-red-50 hover:bg-red-100 border-red-200"
+                  >
+                    <Info className="h-4 w-4 text-red-600" />
+                  </Button>
+                </PopoverTrigger>
+
+                <PopoverContent className="w-64 text-sm text-center">
+                  This is a demo site. Please use test data instead of real personal information.
+                </PopoverContent>
+              </Popover>
             </div>
             <div className="mb-2 flex items-center justify-center gap-2 text-gray-600 text-sm font-bold">
               <span>{restaurant.cuisine}</span>
@@ -169,7 +176,7 @@ export default function RestaurantDetailPage() {
             <div className="bg-gradient-to-br from-white to-indigo-50 p-6 rounded-lg shadow-sm border border-indigo-100">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="font-bold">Name</Label>
+                  <Label htmlFor="name" className="font-bold text-black">Name</Label>
                   <Input
                     type="text"
                     placeholder="John Smith"
@@ -180,7 +187,7 @@ export default function RestaurantDetailPage() {
                 </div>
                 <div className="flex justify-between gap-4">
                   <div className="space-y-2 w-1/2">
-                    <Label htmlFor="phoneNumber" className="font-bold">Phone Number</Label>
+                    <Label htmlFor="phoneNumber" className="font-bold text-black">Phone Number</Label>
                     <Input
                       type="text"
                       placeholder="Fake Number"
@@ -191,17 +198,12 @@ export default function RestaurantDetailPage() {
                     />
                   </div>
                   <div className="space-y-2 w-1/2">
-                    <Label htmlFor="tableSize" className="font-bold">Table Size</Label>
+                    <Label htmlFor="tableSize" className="font-bold text-black">Table Size</Label>
                     <Input
                       type="number"
                       placeholder="Enter party size"
                       value={tableSize}
-                      onChange={(e) => {
-                        const value = Number(e.target.value);
-                        if (value >= 1 && value <= 6) {
-                          setTableSize(value);
-                        }
-                      }}
+                      onChange={(e) => setTableSize(Number(e.target.value))}
                       min={1}
                       max={6}
                       required
